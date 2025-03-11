@@ -1,6 +1,6 @@
 <script>
   import { getContext } from "svelte";
-  import { sumMoney, aumentarPontos } from "../PlayerInfoComponent/PlayerStore";
+  import { sumMoney, sumPoints } from "../PlayerInfoComponent/PlayerStore";
   import { getEnemy } from "./enemyFunctions"; 
   let player = getContext("player");
 
@@ -10,7 +10,7 @@
     const dmg = $player.dmg ? $player.dmg : 1;
     enemy.hp = enemy.hp - dmg
     if(enemy.hp <= 0){
-      aumentarPontos(enemy.xp)
+      sumPoints(enemy.xp)
       sumMoney(enemy.money)
       enemy = { name: "", hp: 0, img: "",xp:0, lvl: 1, money: 0}
       setTimeout(()=>{

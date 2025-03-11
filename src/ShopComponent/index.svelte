@@ -1,20 +1,9 @@
-<script>
-  import { getMoney, aumentarDano, sumMoney } from "../PlayerInfoComponent/PlayerStore";
+<script lang="ts">
+  import { getItens, buyItem, type typeItem } from "./shop";
+  let itens: typeItem[] = $state(getItens());
 
-  let itens = $state([
-    {id: 0, name: "Espada", price: 10, bonus: 1},
-    {id: 1, name: "Espada longa", price: 50, bonus: 3},
-    {id: 2, name: "Espada encantada", price: 550, bonus: 4}
-  ])
-
-  function handleBuy(index, item){
-    const playerMoney = getMoney();
-    if(playerMoney < item.price){
-      return;
-    }
-    aumentarDano(item.bonus);
-    sumMoney(-item.price);
-    itens = itens.filter((i)=>i.id !== index);
+  function handleBuy(id: number, item: typeItem){
+    itens = buyItem(id, item, itens);
   }
 </script>
 
